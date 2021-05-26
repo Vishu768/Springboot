@@ -27,6 +27,14 @@ public String addEmployee(Employee employee)
 	repo.save(employee);
 	return "home.jsp";
 }
+	@RequestMapping("/getEmployee")
+public ModelAndView getEmployee(@RequestParam int aid)
+{ 
+	ModelAndView mv = new ModelAndView("showEmployee.jsp");
+	Employee employee = repo.findById(aid).orElse(new Employee());
+	mv.addObject(employee);
+	return mv;
+}
 @RequestMapping("/Employees")
 @ResponseBody
 public String getEmployees() {
